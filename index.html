@@ -27,7 +27,7 @@
                     case "scissors":
                         return "win";
                     default:
-                        break;
+                        return "tie";
                 }
             }
             if (playerSelection.toLowerCase() === "paper") {
@@ -37,7 +37,7 @@
                     case "scissors":
                         return "lose";
                     default:
-                        break;
+                        return "tie";
                 }
             }
             if (playerSelection.toLowerCase() === "scissors") {
@@ -47,7 +47,7 @@
                     case "paper":
                         return "win";
                     default:
-                        break;
+                        return "tie";
                 }
             }
         }
