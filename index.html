@@ -20,35 +20,17 @@
         }
         
         function playRound(playerSelection, computerSelection) {
-            if (playerSelection.toLowerCase() === "rock") {
-                switch (computerSelection) {
-                    case "paper":
-                        return "lose";
-                    case "scissors":
-                        return "win";
-                    default:
-                        return "tie";
-                }
+            const moves = ["rock", "paper", "scissors"];
+            const playerMoveIndex = moves.indexOf(playerSelection);
+            const computerMoveIndex = moves.indexOf(computerSelection);
+
+            if (playerMoveIndex - computerMoveIndex === 1 ||
+                    playerMoveIndex - computerMoveIndex === -2) {
+                return "win";
             }
-            if (playerSelection.toLowerCase() === "paper") {
-                switch (computerSelection) {
-                    case "rock":
-                        return "win";
-                    case "scissors":
-                        return "lose";
-                    default:
-                        return "tie";
-                }
-            }
-            if (playerSelection.toLowerCase() === "scissors") {
-                switch (computerSelection) {
-                    case "rock":
-                        return "lose";
-                    case "paper":
-                        return "win";
-                    default:
-                        return "tie";
-                }
+            else if (playerMoveIndex - computerMoveIndex === -1 ||
+                playerMoveIndex - computerMoveIndex === 2){
+                return "lose";
             }
         }
 
@@ -57,8 +39,9 @@
             let numberOfLosses = 0;
 
             for (let round = 0; round < 5; round++) {
-                const playerSelection = prompt("Enter rock, paper, or scissors: ");
+                const playerSelection = prompt("Enter rock, paper, or scissors: ").toLowerCase();
                 const computerSelection = computerPlay();
+                console.log(computerSelection);
                 let result = playRound(playerSelection, computerSelection);
                 console.log("Round " + (round + 1) + ": " + result);
                 if (result === "win") {
