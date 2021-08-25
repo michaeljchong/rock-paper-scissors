@@ -60,7 +60,7 @@
                 const playerSelection = prompt("Enter rock, paper, or scissors: ");
                 const computerSelection = computerPlay();
                 let result = playRound(playerSelection, computerSelection);
-                console.log(result);
+                console.log("Round " + (round + 1) + ": " + result);
                 if (result === "win") {
                     winCount += 1;
                 }
