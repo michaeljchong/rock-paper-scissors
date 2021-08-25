@@ -23,18 +23,6 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function gameOutcome(numberOfWins, numberOfLosses) {
-  if (numberOfWins > numberOfLosses) {
-    return "You Win!";
-  }
-  else if (numberOfWins < numberOfLosses) {
-    return "You Lose!";
-  }
-  else {
-    return "It's a Tie!";
-  }
-}
-
 function game() {
   let numberOfWins = 0;
   let numberOfLosses = 0;
@@ -54,7 +42,9 @@ function game() {
     }
   }
 
-  console.log(gameOutcome(numberOfWins, numberOfLosses));
+  return (numberOfWins > numberOfLosses) ? "You Win!" :
+      (numberOfWins < numberOfLosses) ? "You Lose!" :
+      "It's a Tie!";
 }
 
-game();
+console.log(game());
