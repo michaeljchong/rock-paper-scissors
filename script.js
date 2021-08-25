@@ -1,18 +1,14 @@
+const moves = ["rock", "paper", "scissors"];
+
 function computerPlay() {
-  switch (Math.floor(Math.random() * 3)) {
-    case 0:
-      return "rock";
-    case 1:
-      return "paper";
-    default:
-      return "scissors";
-  }
+  const moveIndex = Math.floor(Math.random() * 3);
+  return moves[moveIndex];
 }
 
 function playRound(playerSelection, computerSelection) {
-  const moves = ["rock", "paper", "scissors"];
   const playerMoveIndex = moves.indexOf(playerSelection);
   const computerMoveIndex = moves.indexOf(computerSelection);
+  
   if (playerMoveIndex - computerMoveIndex === 1 ||
       playerMoveIndex - computerMoveIndex === -2) {
     return "win";
@@ -28,8 +24,9 @@ function game() {
   let numberOfLosses = 0;
 
   for (let round = 0; round < 5; round++) {
-    const playerSelection = prompt("Enter a move (ex. rock): ").toLowerCase();
-    const computerSelection = computerPlay();
+    let playerSelection = prompt("Enter a move (ex. rock): ").toLowerCase();
+    let computerSelection = computerPlay();
+
     let result = playRound(playerSelection, computerSelection);
     console.log("Round " + (round + 1) + " computer chose " + 
         computerSelection + " - you " + result);
