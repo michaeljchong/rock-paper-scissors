@@ -10,33 +10,26 @@ function playRound(playerSelection, computerSelection) {
   const computerMoveIndex = moves.indexOf(computerSelection);
   
   if (playerMoveIndex - computerMoveIndex === 1 ||
-      playerMoveIndex - computerMoveIndex === -2) {
-    return "win";
-  }
+      playerMoveIndex - computerMoveIndex === -2) return "win";
   else if (playerMoveIndex - computerMoveIndex === -1 ||
-      playerMoveIndex - computerMoveIndex === 2){
-    return "lose";
-  }
+      playerMoveIndex - computerMoveIndex === 2) return "lose";
+  else return "tie";
 }
 
 function game() {
   let numberOfWins = 0;
   let numberOfLosses = 0;
 
-  for (let round = 0; round < 5; round++) {
+  for (let roundNumber = 0; roundNumber < 5; roundNumber++) {
     let playerSelection = prompt("Enter a move (ex. rock): ").toLowerCase();
     let computerSelection = computerPlay();
-
     let result = playRound(playerSelection, computerSelection);
-    console.log("Round " + (round + 1) + " computer chose " + 
+
+    console.log("Round " + (roundNumber + 1) + " computer chose " + 
         computerSelection + " - you " + result);
 
-    if (result === "win") {
-      numberOfWins += 1;
-    }
-    else if (result === "lose") {
-      numberOfLosses += 1;
-    }
+    if (result === "win") numberOfWins += 1;
+    else if (result === "lose") numberOfLosses += 1;
   }
 
   return (numberOfWins > numberOfLosses) ? "You Win!" :
