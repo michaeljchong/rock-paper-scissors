@@ -20,17 +20,18 @@ function game() {
   let numberOfWins = 0;
   let numberOfLosses = 0;
 
-  for (let roundNumber = 0; roundNumber < 5; roundNumber++) {
-    let playerSelection = prompt("Enter a move (ex. rock): ").toLowerCase();
-    let computerSelection = computerPlay();
-    let result = playRound(playerSelection, computerSelection);
-
-    console.log("Round " + (roundNumber + 1) + " computer chose " + 
-        computerSelection + " - you " + result);
-
-    if (result === "win") numberOfWins += 1;
-    else if (result === "lose") numberOfLosses += 1;
-  }
+  //for (let roundNumber = 0; roundNumber < 5; roundNumber++) {
+    const computerSelection = computerPlay();
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        let result = playRound(button.id, computerSelection);
+        alert(result);
+        if (result === "win") numberOfWins += 1;
+        else if (result === "lose") numberOfLosses += 1;
+      });
+    });
+  //}
 
   return (numberOfWins > numberOfLosses) ? "You Win!" :
       (numberOfWins < numberOfLosses) ? "You Lose!" :
