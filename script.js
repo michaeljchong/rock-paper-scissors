@@ -20,22 +20,27 @@ function game() {
   let numberOfWins = 0;
   let numberOfLosses = 0;
 
-  //for (let roundNumber = 0; roundNumber < 5; roundNumber++) {
-    const computerSelection = computerPlay();
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        let result = playRound(button.id, computerSelection);
-        alert(result);
-        if (result === "win") numberOfWins += 1;
-        else if (result === "lose") numberOfLosses += 1;
-      });
-    });
-  //}
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      if (numberOfWins >= 5 || numberOfLosses >= 5) {
+        const para = document.createElement('p');
+        para.textContent = (numberOfWins > numberOfLosses) ? "You Win!" :
+            (numberOfWins < numberOfLosses) ? "You Lose!" :
+            "It's a Tie!";
+        score.appendChild(para);
+        return;
+      }
 
-  return (numberOfWins > numberOfLosses) ? "You Win!" :
-      (numberOfWins < numberOfLosses) ? "You Lose!" :
-      "It's a Tie!";
+      const computerSelection = computerPlay();
+      let result = playRound(button.id, computerSelection);
+
+      if (result === "win") numberOfWins += 1;
+      else if (result === "lose") numberOfLosses += 1;
+
+      score.textContent = `Player: ${numberOfWins} | Computer: ${numberOfLosses}`;
+    });
+  });
 }
 
 console.log(game());
