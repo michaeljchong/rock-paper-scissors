@@ -24,16 +24,19 @@ function game() {
   buttons.forEach(button => {
     button.addEventListener('click', () => {
       if (numberOfWins >= 5 || numberOfLosses >= 5) {
-        const para = document.createElement('p');
-        para.textContent = (numberOfWins > numberOfLosses) ? "You Win!" :
+        const outcome = document.querySelector('#output');
+        outcome.textContent = (numberOfWins > numberOfLosses) ? "You Win!" :
             (numberOfWins < numberOfLosses) ? "You Lose!" :
             "It's a Tie!";
-        score.appendChild(para);
+        score.appendChild(outcome);
         return;
       }
 
       const computerSelection = computerPlay();
       let result = playRound(button.id, computerSelection);
+      const computerOutput = document.querySelector('#output');
+      computerOutput.textContent = `Computer chose ${computerSelection}.`;
+      score.appendChild(computerOutput);
 
       if (result === "win") numberOfWins += 1;
       else if (result === "lose") numberOfLosses += 1;
@@ -44,4 +47,4 @@ function game() {
   });
 }
 
-console.log(game());
+game();
