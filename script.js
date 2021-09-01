@@ -38,7 +38,8 @@ function game() {
       if (result === "win") numberOfWins += 1;
       else if (result === "lose") numberOfLosses += 1;
 
-      score.textContent = `Player: ${numberOfWins} | Computer: ${numberOfLosses}`;
+      const runnningScore = document.querySelector('#runningScore');
+      runnningScore.textContent = `Player: ${numberOfWins} | Computer: ${numberOfLosses}`;
     });
   });
 }
